@@ -296,8 +296,14 @@
                         "type": "string",
                         "description": "Body İçerik",
                         "default": {
-                            "e_kull_adi": "",
-                            "e_sifre": "",
+                            "e_cinsiyet": "",
+                            "e_stok_kart_kodu": "",
+                            "e_stok_kart_adi": "",
+                            "e_stok_kart_aciklamasi": "",
+                            "e_fiyat_1": "",
+                            "e_fiyat_2": "",
+                            "e_fiyat_3": "",
+                            "e_resim_dosya_uzantisi": "",
                             "e_durum": ""
                         }
                     }
@@ -331,8 +337,14 @@
                         "type": "string",
                         "description": "Body İçerik",
                         "default": {
-                            "e_kull_adi": "",
-                            "e_sifre": "",
+                            "e_cinsiyet": "",
+                            "e_stok_kart_kodu": "",
+                            "e_stok_kart_adi": "",
+                            "e_stok_kart_aciklamasi": "",
+                            "e_fiyat_1": "",
+                            "e_fiyat_2": "",
+                            "e_fiyat_3": "",
+                            "e_resim_dosya_uzantisi": "",
                             "e_durum": "",
                             "ESKI_ID": ""
                         }
@@ -365,7 +377,7 @@
                         "name": "ESKI_ID",
                         "in": "query",
                         "type": "string",
-                        "description": "kullanıcı ID si",
+                        "description": "Stok Kart ID si",
                         "default": "",
                         "required": true
                     }
@@ -398,6 +410,326 @@
                         "in": "formData",
                         "type": "file",
                         "description": "yüklenecek dosyayı seçiniz",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiIslemleri/bayiListesi": {
+            "get": {
+                "summary": "Bayi Listesi",
+                "tags": [
+                    "ADMIN - Bayi İşlemleri"
+                ],
+                "description": "bayiIslemleri/bayiListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "ARAMA",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiIslemleri/bayiEkle": {
+            "post": {
+                "summary": "Bayi Ekle",
+                "tags": [
+                    "ADMIN - Bayi İşlemleri"
+                ],
+                "description": "bayiIslemleri/bayiEkle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_bayi_kodu": "",
+                            "e_bayi_adi": "",
+                            "e_yetkilisi": "",
+                            "e_il": "",
+                            "e_ilce": "",
+                            "e_fiyat_politikasi": "",
+                            "e_iskonto_orani": "",
+                            "e_durum": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiIslemleri/bayiDuzenle": {
+            "put": {
+                "summary": "Bayi Düzenle",
+                "tags": [
+                    "ADMIN - Bayi İşlemleri"
+                ],
+                "description": "bayiIslemleri/bayiDuzenle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_bayi_kodu": "",
+                            "e_bayi_adi": "",
+                            "e_yetkilisi": "",
+                            "e_il": "",
+                            "e_ilce": "",
+                            "e_fiyat_politikasi": "",
+                            "e_iskonto_orani": "",
+                            "e_durum": "",
+                            "ESKI_ID": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiIslemleri/bayiSil": {
+            "delete": {
+                "summary": "Bayi Sil",
+                "tags": [
+                    "ADMIN - Bayi İşlemleri"
+                ],
+                "description": "bayiIslemleri/bayiSil",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Bayi ID si",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiKullaniciIslemleri/kullaniciListesi": {
+            "get": {
+                "summary": "Bayi Kullanıcısı Listesi",
+                "tags": [
+                    "ADMIN - Bayi Kullanıcı İşlemleri"
+                ],
+                "description": "bayiKullaniciIslemleri/kullaniciListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "ARAMA",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Bayinin IDsi",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiKullaniciIslemleri/kullaniciEkle": {
+            "post": {
+                "summary": "Bayi Kullanıcısı Ekle",
+                "tags": [
+                    "ADMIN - Bayi Kullanıcı İşlemleri"
+                ],
+                "description": "bayiKullaniciIslemleri/kullaniciEkle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_bayi_id": "",
+                            "e_kull_adi": "",
+                            "e_sifre": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiKullaniciIslemleri/kullaniciDuzenle": {
+            "put": {
+                "summary": "Bayi Kullanıcısı Düzenle",
+                "tags": [
+                    "ADMIN - Bayi Kullanıcı İşlemleri"
+                ],
+                "description": "bayiKullaniciIslemleri/kullaniciDuzenle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_bayi_id": "",
+                            "e_kull_adi": "",
+                            "e_sifre": "",
+                            "ESKI_ID": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/bayiKullaniciIslemleri/kullaniciSil": {
+            "delete": {
+                "summary": "Bayi Kullanıcısı Sil",
+                "tags": [
+                    "ADMIN - Bayi Kullanıcı İşlemleri"
+                ],
+                "description": "bayiKullaniciIslemleri/kullaniciSil",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Bayi Kullanıcısının ID si",
                         "default": "",
                         "required": true
                     }

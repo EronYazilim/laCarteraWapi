@@ -13671,3 +13671,7 @@ Require stack:
   code: 'MODULE_NOT_FOUND',
   requireStack: [ '/home/eron/wapi/laCarteraWapi/laCartera.js' ]
 }
+SyntaxError: Unexpected token F in JSON at position 112
+    at JSON.parse (<anonymous>)
+    at /home/eron/wapi/laCarteraWapi/component/admin/tanimlar/bayi_kullanicilari.js:217:16
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)

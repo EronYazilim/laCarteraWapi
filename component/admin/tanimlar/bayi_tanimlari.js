@@ -20,13 +20,13 @@ router.use (function(req, res, next) {
 	})
 })
 
-JSON_stokKartIslemleri = {
+JSON_bayiIslemleri = {
   
-	"/admin/stokKartIslemleri/stokKartListesi": {
+	"/admin/bayiIslemleri/bayiListesi": {
     "get": {
-      "summary": "Stok Kart Listesi",
-      "tags": ["ADMIN - Stok Kart İşlemleri"],
-			"description":"stokKartIslemleri/stokKartListesi",
+      "summary": "Bayi Listesi",
+      "tags": ["ADMIN - Bayi İşlemleri"],
+			"description":"bayiIslemleri/bayiListesi",
       "parameters": [{
 					"name": "utoken",
 					"in": "header",
@@ -72,11 +72,11 @@ JSON_stokKartIslemleri = {
     }
   },
 
-	"/admin/stokKartIslemleri/stokKartEkle": {
+	"/admin/bayiIslemleri/bayiEkle": {
     "post": {
-      "summary": "Stok Kart Ekle",
-      "tags": ["ADMIN - Stok Kart İşlemleri"],
-			"description":"stokKartIslemleri/stokKartEkle",
+      "summary": "Bayi Ekle",
+      "tags": ["ADMIN - Bayi İşlemleri"],
+			"description":"bayiIslemleri/bayiEkle",
       "parameters": [{
 					"name": "utoken",
 					"in": "header",
@@ -91,14 +91,13 @@ JSON_stokKartIslemleri = {
         "type": "string",
         "description": "Body İçerik",
         "default": {
-					"e_cinsiyet" : "",
-					"e_stok_kart_kodu" : "",
-					"e_stok_kart_adi" : "",
-					"e_stok_kart_aciklamasi" : "",
-					"e_fiyat_1" : "",
-					"e_fiyat_2" : "",
-					"e_fiyat_3" : "",
-					"e_resim_dosya_uzantisi" : "",
+					"e_bayi_kodu" : "",
+					"e_bayi_adi" : "",
+					"e_yetkilisi" : "",
+					"e_il" : "",
+					"e_ilce" : "",
+					"e_fiyat_politikasi" : "",
+					"e_iskonto_orani" : "",
 					"e_durum" : "",
         }
       }],
@@ -110,11 +109,11 @@ JSON_stokKartIslemleri = {
     }
   },
 
-	"/admin/stokKartIslemleri/stokKartDuzenle": {
+	"/admin/bayiIslemleri/bayiDuzenle": {
     "put": {
-      "summary": "Stok Kart Düzenle",
-      "tags": ["ADMIN - Stok Kart İşlemleri"],
-			"description":"stokKartIslemleri/stokKartDuzenle",
+      "summary": "Bayi Düzenle",
+      "tags": ["ADMIN - Bayi İşlemleri"],
+			"description":"bayiIslemleri/bayiDuzenle",
       "parameters": [{
 					"name": "utoken",
 					"in": "header",
@@ -129,14 +128,13 @@ JSON_stokKartIslemleri = {
         "type": "string",
         "description": "Body İçerik",
         "default": {
-					"e_cinsiyet" : "",
-					"e_stok_kart_kodu" : "",
-					"e_stok_kart_adi" : "",
-					"e_stok_kart_aciklamasi" : "",
-					"e_fiyat_1" : "",
-					"e_fiyat_2" : "",
-					"e_fiyat_3" : "",
-					"e_resim_dosya_uzantisi" : "",
+					"e_bayi_kodu" : "",
+					"e_bayi_adi" : "",
+					"e_yetkilisi" : "",
+					"e_il" : "",
+					"e_ilce" : "",
+					"e_fiyat_politikasi" : "",
+					"e_iskonto_orani" : "",
 					"e_durum" : "",
 					"ESKI_ID":""
         }
@@ -149,11 +147,11 @@ JSON_stokKartIslemleri = {
     }
   },
 
-	"/admin/stokKartIslemleri/stokKartSil": {
+	"/admin/bayiIslemleri/bayiSil": {
     "delete": {
-      "summary": "Stok Kart Sil",
-      "tags": ["ADMIN - Stok Kart İşlemleri"],
-			"description":"stokKartIslemleri/stokKartSil",
+      "summary": "Bayi Sil",
+      "tags": ["ADMIN - Bayi İşlemleri"],
+			"description":"bayiIslemleri/bayiSil",
       "parameters": [{
 					"name": "utoken",
 					"in": "header",
@@ -166,7 +164,7 @@ JSON_stokKartIslemleri = {
 					"name": "ESKI_ID",
 					"in": "query",
 					"type": "string",
-					"description": "Stok Kart ID si",
+					"description": "Bayi ID si",
 					"default": "",
 					"required": true
 				}
@@ -181,7 +179,7 @@ JSON_stokKartIslemleri = {
 
 }
 
-router.get('/stokKartListesi', async function (req, res) {
+router.get('/bayiListesi', async function (req, res) {
 
 	IP = "" + req.connection.remoteAddress
 	BODY_ICERIK = ""
@@ -199,7 +197,7 @@ router.get('/stokKartListesi', async function (req, res) {
 		}
 	}
 					
-		SORGU = "SP_W_T_STOK_KART_TANIMLARI @islem = 'L', @TOKEN = '"+UTOKEN+"',"+
+		SORGU = "SP_W_T_BAYI_TANIMLARI @islem = 'L', @TOKEN = '"+UTOKEN+"',"+
 									" @e_durum = '"+isnull(req.query.e_durum)+"',"+
 									" @ARAMA = '"+isnull(req.query.ARAMA)+"',"+
 									" @SS = '"+isnull(req.query.SS)+"',"+
@@ -210,7 +208,7 @@ router.get('/stokKartListesi', async function (req, res) {
 	res.end()
 })
 
-router.post('/stokKartEkle', async function (req, res) {
+router.post('/bayiEkle', async function (req, res) {
 
 	IP = "" + req.connection.remoteAddress
 	BODY_ICERIK = ""
@@ -228,15 +226,14 @@ router.post('/stokKartEkle', async function (req, res) {
 		}
 	}
 					
-		SORGU = "SP_W_T_STOK_KART_TANIMLARI @islem = 'E', @TOKEN = '"+UTOKEN+"',"+
-								" @e_cinsiyet = '"+isnull(BODY_ICERIK.e_cinsiyet)+"',"+
-								" @e_stok_kart_kodu = '"+isnull(BODY_ICERIK.e_stok_kart_kodu)+"',"+
-								" @e_stok_kart_adi = '"+isnull(BODY_ICERIK.e_stok_kart_adi)+"',"+
-								" @e_stok_kart_aciklamasi = '"+isnull(BODY_ICERIK.e_stok_kart_aciklamasi)+"',"+
-								" @e_fiyat_1 = '"+isnull(BODY_ICERIK.e_fiyat_1)+"',"+
-								" @e_fiyat_2 = '"+isnull(BODY_ICERIK.e_fiyat_2)+"',"+
-								" @e_fiyat_3 = '"+isnull(BODY_ICERIK.e_fiyat_3)+"',"+
-								" @e_resim_dosya_uzantisi = '"+isnull(BODY_ICERIK.e_resim_dosya_uzantisi)+"',"+
+		SORGU = "SP_W_T_BAYI_TANIMLARI @islem = 'E', @TOKEN = '"+UTOKEN+"',"+
+								" @e_bayi_kodu = '"+isnull(BODY_ICERIK.e_bayi_kodu)+"',"+
+								" @e_bayi_adi = '"+isnull(BODY_ICERIK.e_bayi_adi)+"',"+
+								" @e_yetkilisi = '"+isnull(BODY_ICERIK.e_yetkilisi)+"',"+
+								" @e_il = '"+isnull(BODY_ICERIK.e_il)+"',"+
+								" @e_ilce = '"+isnull(BODY_ICERIK.e_ilce)+"',"+
+								" @e_fiyat_politikasi = '"+isnull(BODY_ICERIK.e_fiyat_politikasi)+"',"+
+								" @e_iskonto_orani = '"+isnull(BODY_ICERIK.e_iskonto_orani)+"',"+
 								" @e_durum = '"+isnull(BODY_ICERIK.e_durum)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
@@ -244,7 +241,7 @@ router.post('/stokKartEkle', async function (req, res) {
 	res.end()
 })
 
-router.put('/stokKartDuzenle', async function (req, res) {
+router.put('/bayiDuzenle', async function (req, res) {
 
 	IP = "" + req.connection.remoteAddress
 	BODY_ICERIK = ""
@@ -262,15 +259,14 @@ router.put('/stokKartDuzenle', async function (req, res) {
 		}
 	}
 					
-		SORGU = "SP_W_T_STOK_KART_TANIMLARI @islem = 'D', @TOKEN = '"+UTOKEN+"',"+
-                " @e_cinsiyet = '"+isnull(BODY_ICERIK.e_cinsiyet)+"',"+
-                " @e_stok_kart_kodu = '"+isnull(BODY_ICERIK.e_stok_kart_kodu)+"',"+
-                " @e_stok_kart_adi = '"+isnull(BODY_ICERIK.e_stok_kart_adi)+"',"+
-                " @e_stok_kart_aciklamasi = '"+isnull(BODY_ICERIK.e_stok_kart_aciklamasi)+"',"+
-                " @e_fiyat_1 = '"+isnull(BODY_ICERIK.e_fiyat_1)+"',"+
-                " @e_fiyat_2 = '"+isnull(BODY_ICERIK.e_fiyat_2)+"',"+
-                " @e_fiyat_3 = '"+isnull(BODY_ICERIK.e_fiyat_3)+"',"+
-                " @e_resim_dosya_uzantisi = '"+isnull(BODY_ICERIK.e_resim_dosya_uzantisi)+"',"+
+		SORGU = "SP_W_T_BAYI_TANIMLARI @islem = 'D', @TOKEN = '"+UTOKEN+"',"+
+								" @e_bayi_kodu = '"+isnull(BODY_ICERIK.e_bayi_kodu)+"',"+
+								" @e_bayi_adi = '"+isnull(BODY_ICERIK.e_bayi_adi)+"',"+
+								" @e_yetkilisi = '"+isnull(BODY_ICERIK.e_yetkilisi)+"',"+
+								" @e_il = '"+isnull(BODY_ICERIK.e_il)+"',"+
+								" @e_ilce = '"+isnull(BODY_ICERIK.e_ilce)+"',"+
+								" @e_fiyat_politikasi = '"+isnull(BODY_ICERIK.e_fiyat_politikasi)+"',"+
+								" @e_iskonto_orani = '"+isnull(BODY_ICERIK.e_iskonto_orani)+"',"+
                 " @e_durum = '"+isnull(BODY_ICERIK.e_durum)+"',"+
 								" @eski_id = '"+isnull(BODY_ICERIK.ESKI_ID)+"'"
 
@@ -279,7 +275,7 @@ router.put('/stokKartDuzenle', async function (req, res) {
 	res.end()
 })
 
-router.delete('/stokKartSil', async function (req, res) {
+router.delete('/bayiSil', async function (req, res) {
 
 	IP = "" + req.connection.remoteAddress
 	BODY_ICERIK = ""
@@ -297,7 +293,7 @@ router.delete('/stokKartSil', async function (req, res) {
 		}
 	}
 					
-		SORGU = "SP_W_T_STOK_KART_TANIMLARI @islem = 'S', @TOKEN = '"+UTOKEN+"',"+					
+		SORGU = "SP_W_T_BAYI_TANIMLARI @islem = 'S', @TOKEN = '"+UTOKEN+"',"+					
 								" @eski_id = '"+isnull(req.query.ESKI_ID)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
@@ -312,4 +308,4 @@ function isnull(deger) {
 
 module.exports = router
 
-SWAGGER_ADMIN_HAZIRLA.JSON_DAHIL_ET(JSON_stokKartIslemleri)
+SWAGGER_ADMIN_HAZIRLA.JSON_DAHIL_ET(JSON_bayiIslemleri)
