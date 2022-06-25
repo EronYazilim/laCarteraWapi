@@ -1,0 +1,413 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "laCartera Admin WAPI",
+        "version": "1.1001.1",
+        "description": "Web Api Dökümantasyonu <hr>"
+    },
+    "schemes": [
+        "https"
+    ],
+    "host": "test.eronsoftware.com:5770",
+    "basePath": "/",
+    "consumes": [
+        "text/plain"
+    ],
+    "produces": [
+        "text/plain"
+    ],
+    "paths": {
+        "/admin/authentication/login": {
+            "post": {
+                "summary": "Login İşlemi",
+                "tags": [
+                    "ADMIN - Login İşlemleri"
+                ],
+                "description": "authentication/login",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_kull_adi": "berkan",
+                            "e_sifre": "123456"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/authentication/logout": {
+            "post": {
+                "summary": "Logout İşlemi",
+                "tags": [
+                    "ADMIN - Login İşlemleri"
+                ],
+                "description": "authentication/logout",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/kullaniciIslemleri/kullaniciListesi": {
+            "get": {
+                "summary": "Kullanıcı Listesi",
+                "tags": [
+                    "ADMIN - Kullanıcı İşlemleri"
+                ],
+                "description": "kullaniciIslemleri/kullaniciListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "ARAMA",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/kullaniciIslemleri/kullaniciEkle": {
+            "post": {
+                "summary": "Kullanıcı Ekle",
+                "tags": [
+                    "ADMIN - Kullanıcı İşlemleri"
+                ],
+                "description": "kullaniciIslemleri/kullaniciEkle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_kull_adi": "",
+                            "e_sifre": "",
+                            "e_durum": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/kullaniciIslemleri/kullaniciDuzenle": {
+            "put": {
+                "summary": "Kullanıcı Düzenle",
+                "tags": [
+                    "ADMIN - Kullanıcı İşlemleri"
+                ],
+                "description": "kullaniciIslemleri/kullaniciDuzenle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_kull_adi": "",
+                            "e_sifre": "",
+                            "e_durum": "",
+                            "ESKI_ID": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/kullaniciIslemleri/kullaniciSil": {
+            "delete": {
+                "summary": "Kullanıcı Sil",
+                "tags": [
+                    "ADMIN - Kullanıcı İşlemleri"
+                ],
+                "description": "kullaniciIslemleri/kullaniciSil",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "kullanıcı ID si",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/stokKartIslemleri/stokKartListesi": {
+            "get": {
+                "summary": "Stok Kart Listesi",
+                "tags": [
+                    "ADMIN - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartIslemleri/stokKartListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "ARAMA",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/stokKartIslemleri/stokKartEkle": {
+            "post": {
+                "summary": "Stok Kart Ekle",
+                "tags": [
+                    "ADMIN - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartIslemleri/stokKartEkle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_kull_adi": "",
+                            "e_sifre": "",
+                            "e_durum": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/stokKartIslemleri/stokKartDuzenle": {
+            "put": {
+                "summary": "Stok Kart Düzenle",
+                "tags": [
+                    "ADMIN - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartIslemleri/stokKartDuzenle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "type": "string",
+                        "description": "Body İçerik",
+                        "default": {
+                            "e_kull_adi": "",
+                            "e_sifre": "",
+                            "e_durum": "",
+                            "ESKI_ID": ""
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/stokKartIslemleri/stokKartSil": {
+            "delete": {
+                "summary": "Stok Kart Sil",
+                "tags": [
+                    "ADMIN - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartIslemleri/stokKartSil",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "kullanıcı ID si",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/stokKartUpload": {
+            "post": {
+                "summary": "Stok Kart Upload",
+                "tags": [
+                    "ADMIN - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartUpload",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "dosyalar",
+                        "in": "formData",
+                        "type": "file",
+                        "description": "yüklenecek dosyayı seçiniz",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        }
+    }
+}

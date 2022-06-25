@@ -1,0 +1,33 @@
+{
+  "name": "laCartera",
+  "version": "1.1001.1",
+  "license": "ISC",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "fs": "0.0.1-security",
+    "moment": "^2.29.3",
+    "mssql": "^6.3.1",
+    "multer": "^1.4.5-lts.1",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.4.0"
+  },
+  "main": "ecosystem.config.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EronYazilim/laCarteraWapi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/EronYazilim/laCarteraWapi/issues"
+  },
+  "homepage": "https://github.com/EronYazilim/laCarteraWapi#readme",
+  "description": ""
+}

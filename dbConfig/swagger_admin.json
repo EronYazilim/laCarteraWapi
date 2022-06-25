@@ -1,0 +1,17 @@
+{
+  "swagger": "2.0",
+
+  "info": {
+    "title": "laCartera Admin WAPI",
+    "version": "1.1001.1",
+    "description": "Web Api Dökümantasyonu <hr>"
+  },
+
+  "schemes": ["https"],
+  "host": "test.eronsoftware.com:5770",
+  "basePath": "/",
+  "consumes": ["text/plain"],
+  "produces": ["text/plain"],
+
+  "paths": {}
+}
