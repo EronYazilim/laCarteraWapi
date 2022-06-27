@@ -9,7 +9,7 @@ module.exports = {
       "pm2Log",
       ".gitignore",
       "./dbConfig/swagger_admin_view.json",
-      "./dbConfig/swagger_mobil_view.json",
+      "./dbConfig/swagger_bayi_view.json",
       "./ecosystem.config.js",
       "uploads"
     ],
