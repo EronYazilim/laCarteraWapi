@@ -13675,3 +13675,7 @@ SyntaxError: Unexpected token F in JSON at position 112
     at JSON.parse (<anonymous>)
     at /home/eron/wapi/laCarteraWapi/component/admin/tanimlar/bayi_kullanicilari.js:217:16
     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+SyntaxError: Unexpected token F in JSON at position 112
+    at JSON.parse (<anonymous>)
+    at /home/eron/wapi/laCarteraWapi/component/bayi/tanimlar/siparis_tanimlari.js:549:16
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)

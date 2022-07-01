@@ -247,7 +247,6 @@ JSON_satisIslemleri = {
         "default": {
 					"e_stok_kart_id":"",
 					"e_miktar":"",
-					"e_satir_toplami":"",
 					"e_satis_unique_id":""
         }
       }],
@@ -280,7 +279,6 @@ JSON_satisIslemleri = {
         "default": {
 					"e_stok_kart_id":"",
 					"e_miktar":"",
-					"e_satir_toplami":"",
 					"ESKI_ID":""
         }
       }],
@@ -509,7 +507,6 @@ router.post('/satisDetayEkle', async function (req, res) {
 		SORGU = "SP_W_B_SATISLAR @islem = 'E2', @TOKEN = '"+UTOKEN+"',"+
 								" @e_stok_kart_id = '"+isnull(BODY_ICERIK.e_stok_kart_id)+"',"+
 								" @e_miktar = '"+isnull(BODY_ICERIK.e_miktar)+"',"+
-								" @e_satir_toplami = '"+isnull(BODY_ICERIK.e_satir_toplami)+"',"+
 								" @e_satis_unique_id = '"+isnull(BODY_ICERIK.e_satis_unique_id)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
@@ -538,7 +535,6 @@ router.put('/satisDetayDuzenle', async function (req, res) {
 		SORGU = "SP_W_B_SATISLAR @islem = 'D2', @TOKEN = '"+UTOKEN+"',"+
 								" @e_stok_kart_id = '"+isnull(BODY_ICERIK.e_stok_kart_id)+"',"+
 								" @e_miktar = '"+isnull(BODY_ICERIK.e_miktar)+"',"+
-								" @e_satir_toplami = '"+isnull(BODY_ICERIK.e_satir_toplami)+"',"+
 								" @eski_id = '"+isnull(BODY_ICERIK.ESKI_ID)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
@@ -546,7 +542,7 @@ router.put('/satisDetayDuzenle', async function (req, res) {
 	res.end()
 })
 
-router.delete('/satissDetaySil', async function (req, res) {
+router.delete('/satisDetaySil', async function (req, res) {
 
 	IP = "" + req.connection.remoteAddress
 	BODY_ICERIK = ""

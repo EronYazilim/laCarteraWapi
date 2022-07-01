@@ -794,7 +794,6 @@
                         "default": {
                             "e_stok_kart_id": "",
                             "e_miktar": "",
-                            "e_satir_toplami": "",
                             "e_satis_unique_id": ""
                         }
                     }
@@ -830,7 +829,6 @@
                         "default": {
                             "e_stok_kart_id": "",
                             "e_miktar": "",
-                            "e_satir_toplami": "",
                             "ESKI_ID": ""
                         }
                     }
@@ -865,6 +863,58 @@
                         "description": "Satış Detay ID si",
                         "default": "",
                         "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/bayi/stokKartIslemleri/stokKartListesi": {
+            "get": {
+                "summary": "Stok Kart Listesi",
+                "tags": [
+                    "BAYİ - Stok Kart İşlemleri"
+                ],
+                "description": "stokKartIslemleri/stokKartListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "ARAMA",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
                     }
                 ],
                 "responses": {

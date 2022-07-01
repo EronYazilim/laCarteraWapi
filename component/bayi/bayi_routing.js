@@ -8,6 +8,7 @@ var COMPONENT_uploads = require('./diger/uploads.js')
 var COMPONENT_kullanici_tanimlari = require('./tanimlar/kullanici_tanimlari.js')
 var COMPONENT_siparis_tanimlari = require('./tanimlar/siparis_tanimlari.js')
 var COMPONENT_satis_tanimlari = require('./tanimlar/satis_tanimlari.js')
+var COMPONENT_stok_kart_tanimlari = require('./tanimlar/stok_kart_tanimlari.js')
 
 /////// UTOKEN VE LOGİN DURUMU SORGULAMA
 router.use (async function(req, res, next) {
@@ -41,6 +42,7 @@ router.use('/uploads', COMPONENT_uploads)
 router.use('/kullaniciIslemleri', COMPONENT_kullanici_tanimlari)
 router.use('/siparisIslemleri', COMPONENT_siparis_tanimlari)
 router.use('/satisIslemleri', COMPONENT_satis_tanimlari)
+router.use('/stokKartIslemleri', COMPONENT_stok_kart_tanimlari)
 
 router.post('*', function(req, res){
   res.send([{"S": "H", "HATA_KODU": "803-1", "HATA_ACIKLAMASI": "Routher Hatası (bayi_routing)"}])

@@ -748,6 +748,110 @@
                     }
                 }
             }
+        },
+        "/admin/siparisIslemleri/siparisListesi": {
+            "get": {
+                "summary": "Sipariş Listesi",
+                "tags": [
+                    "ADMİN - Sipariş İşlemleri"
+                ],
+                "description": "siparisIslemleri/siparisListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sipariş IDsi",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
+        "/admin/satisIslemleri/satisListesi": {
+            "get": {
+                "summary": "Satış Listesi",
+                "tags": [
+                    "ADMİN - Satış İşlemleri"
+                ],
+                "description": "satisIslemleri/satisListesi",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "SS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Sayfa Sayısı",
+                        "default": "1"
+                    },
+                    {
+                        "name": "KS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt Sayısı",
+                        "default": "20"
+                    },
+                    {
+                        "name": "e_durum",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Kayıt durumu",
+                        "default": ""
+                    },
+                    {
+                        "name": "ESKI_ID",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Satış IDsi",
+                        "default": ""
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
         }
     }
 }
