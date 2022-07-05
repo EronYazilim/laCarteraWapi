@@ -872,6 +872,38 @@
                 }
             }
         },
+        "/bayi/satisIslemleri/satisDetayTemizle": {
+            "delete": {
+                "summary": "Satış Detay Temizle",
+                "tags": [
+                    "BAYİ - Satış İşlemleri"
+                ],
+                "description": "satisIslemleri/satisDetayTemizle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "e_satis_unique_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Satış Detay Unique ID si",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/bayi/stokKartIslemleri/stokKartListesi": {
             "get": {
                 "summary": "Stok Kart Listesi",
@@ -907,6 +939,13 @@
                         "in": "query",
                         "type": "string",
                         "description": "Arama Metni",
+                        "default": ""
+                    },
+                    {
+                        "name": "e_cinsiyet",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Cinsiyet",
                         "default": ""
                     },
                     {

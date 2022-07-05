@@ -319,6 +319,36 @@ JSON_satisIslemleri = {
       }
     }
   },
+
+	"/bayi/satisIslemleri/satisDetayTemizle": {
+    "delete": {
+      "summary": "Satış Detay Temizle",
+      "tags": ["BAYİ - Satış İşlemleri"],
+			"description":"satisIslemleri/satisDetayTemizle",
+      "parameters": [{
+					"name": "utoken",
+					"in": "header",
+					"type": "string",
+					"description": "login utoken",
+					"default": "",
+					"required": true
+				},
+				{
+					"name": "e_satis_unique_id",
+					"in": "query",
+					"type": "string",
+					"description": "Satış Detay Unique ID si",
+					"default": "",
+					"required": true
+				}
+				],
+      "responses": {
+        "200": {
+          "description": "OK"
+        }
+      }
+    }
+  },
 	
 }
 
@@ -562,6 +592,32 @@ router.delete('/satisDetaySil', async function (req, res) {
 					
 		SORGU = "SP_W_B_SATISLAR @islem = 'S2', @TOKEN = '"+UTOKEN+"',"+					
 								" @eski_id = '"+isnull(req.query.ESKI_ID)+"'"
+
+	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
+	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))
+	res.end()
+})
+
+router.delete('/satisDetayTemizle', async function (req, res) {
+
+	IP = "" + req.connection.remoteAddress
+	BODY_ICERIK = ""
+	UTOKEN = "" + req.headers['utoken'].trim()
+
+	if (req.body != "")
+	{
+		try {
+			BODY_ICERIK = JSON.parse(req.body)
+		}
+		catch(err) {
+			res.send([{"S": "H", "HATA_KODU": "801", "HATA_ACIKLAMASI": "BODY-JSON Parse Hatası"}])
+			res.end()
+			return false
+		}
+	}
+					
+		SORGU = "SP_W_B_SATISLAR @islem = 'T', @TOKEN = '"+UTOKEN+"',"+					
+								" @e_satis_unique_id = '"+isnull(req.query.e_satis_unique_id)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
 	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))

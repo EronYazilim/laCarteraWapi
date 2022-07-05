@@ -57,6 +57,13 @@ JSON_stokKartIslemleri = {
         "default": ""
       },
 			{
+        "name": "e_cinsiyet",
+        "in": "query",
+        "type": "string",
+        "description": "Cinsiyet",
+        "default": ""
+      },
+			{
         "name": "e_durum",
         "in": "query",
         "type": "string",
@@ -95,6 +102,7 @@ router.get('/stokKartListesi', async function (req, res) {
 		SORGU = "SP_W_B_STOK_KART_TANIMLARI @islem = 'L', @TOKEN = '"+UTOKEN+"',"+
 									" @e_durum = '"+isnull(req.query.e_durum)+"',"+
 									" @ARAMA = '"+isnull(req.query.ARAMA)+"',"+
+									" @e_cinsiyet = '"+isnull(req.query.e_cinsiyet)+"',"+
 									" @SS = '"+isnull(req.query.SS)+"',"+
 									" @KS = '"+isnull(req.query.KS)+"'"
 
