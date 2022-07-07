@@ -327,6 +327,35 @@ JSON_siparisIslemleri = {
     }
   },
 	
+	"/bayi/siparisIslemleri/siparisDetayTemizle": {
+    "delete": {
+      "summary": "Sipariş Detay Temizle",
+      "tags": ["BAYİ - Sipariş İşlemleri"],
+			"description":"siparisIslemleri/siparisDetayTemizle",
+      "parameters": [{
+					"name": "utoken",
+					"in": "header",
+					"type": "string",
+					"description": "login utoken",
+					"default": "",
+					"required": true
+				},
+				{
+					"name": "e_siparis_unique_id",
+					"in": "query",
+					"type": "string",
+					"description": "Satış Detay Unique id si",
+					"default": "",
+					"required": true
+				}
+				],
+      "responses": {
+        "200": {
+          "description": "OK"
+        }
+      }
+    }
+  },
 }
 
 router.get('/siparisListesi', async function (req, res) {
@@ -570,6 +599,32 @@ router.delete('/siparisDetaySil', async function (req, res) {
 					
 		SORGU = "SP_W_B_SIPARISLER @islem = 'S2', @TOKEN = '"+UTOKEN+"',"+					
 								" @eski_id = '"+isnull(req.query.ESKI_ID)+"'"
+
+	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
+	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))
+	res.end()
+})
+
+router.delete('/siparisDetayTemizle', async function (req, res) {
+
+	IP = "" + req.connection.remoteAddress
+	BODY_ICERIK = ""
+	UTOKEN = "" + req.headers['utoken'].trim()
+
+	if (req.body != "")
+	{
+		try {
+			BODY_ICERIK = JSON.parse(req.body)
+		}
+		catch(err) {
+			res.send([{"S": "H", "HATA_KODU": "801", "HATA_ACIKLAMASI": "BODY-JSON Parse Hatası"}])
+			res.end()
+			return false
+		}
+	}
+					
+		SORGU = "SP_W_B_SIPARISLER @islem = 'T', @TOKEN = '"+UTOKEN+"',"+					
+								" @e_siparis_unique_id = '"+isnull(req.query.e_siparis_unique_id)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
 	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))

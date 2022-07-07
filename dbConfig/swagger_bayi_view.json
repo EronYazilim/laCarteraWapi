@@ -551,6 +551,38 @@
                 }
             }
         },
+        "/bayi/siparisIslemleri/siparisDetayTemizle": {
+            "delete": {
+                "summary": "Sipariş Detay Temizle",
+                "tags": [
+                    "BAYİ - Sipariş İşlemleri"
+                ],
+                "description": "siparisIslemleri/siparisDetayTemizle",
+                "parameters": [
+                    {
+                        "name": "utoken",
+                        "in": "header",
+                        "type": "string",
+                        "description": "login utoken",
+                        "default": "",
+                        "required": true
+                    },
+                    {
+                        "name": "e_siparis_unique_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "Satış Detay Unique id si",
+                        "default": "",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
+        },
         "/bayi/satisIslemleri/satisListesi": {
             "get": {
                 "summary": "Satış Listesi",
