@@ -71,6 +71,60 @@ JSON_siparisIslemleri = {
       }
     }
   },
+
+	"/admin/siparisIslemleri/siparisListesiOzetSayilar": {
+    "get": {
+      "summary": "Sipariş Listesi Özet Sayılar",
+      "tags": ["ADMİN - Sipariş İşlemleri"],
+			"description":"siparisIslemleri/siparisListesiOzetSayilar",
+      "parameters": [{
+					"name": "utoken",
+					"in": "header",
+					"type": "string",
+					"description": "login utoken",
+					"default": "",
+					"required": true
+				}
+		],
+      "responses": {
+        "200": {
+          "description": "OK"
+        }
+      }
+    }
+  },
+
+	"/admin/siparisIslemleri/siparisDurumGuncelle": {
+    "put": {
+      "summary": "Sipariş Durum Güncelle",
+      "tags": ["ADMİN - Sipariş İşlemleri"],
+			"description":"siparisIslemleri/siparisDurumGuncelle",
+      "parameters": [{
+					"name": "utoken",
+					"in": "header",
+					"type": "string",
+					"description": "login utoken",
+					"default": "",
+					"required": true
+				},
+				{
+					"name": "body",
+					"in": "body",
+					"type": "string",
+					"description": "Body İçerik",
+					"default": {
+						"e_durum" : "İşlem Bekliyor",
+						"ESKI_ID":"1"
+					}
+				}
+		],
+      "responses": {
+        "200": {
+          "description": "OK"
+        }
+      }
+    }
+  },
 	
 }
 
@@ -97,6 +151,59 @@ router.get('/siparisListesi', async function (req, res) {
 									" @SS = '"+isnull(req.query.SS)+"',"+
 									" @KS = '"+isnull(req.query.KS)+"',"+
 									" @eski_id = '"+isnull(req.query.ESKI_ID)+"'"
+
+	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
+	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))
+	res.end()
+})
+
+
+router.get('/siparisListesiOzetSayilar', async function (req, res) {
+
+	IP = "" + req.connection.remoteAddress
+	BODY_ICERIK = ""
+	UTOKEN = "" + req.headers['utoken'].trim()
+
+	if (req.body != "")
+	{
+		try {
+			BODY_ICERIK = JSON.parse(req.body)
+		}
+		catch(err) {
+			res.send([{"S": "H", "HATA_KODU": "801", "HATA_ACIKLAMASI": "BODY-JSON Parse Hatası"}])
+			res.end()
+			return false
+		}
+	}
+					
+		SORGU = "SP_W_T_SIPARISLER @islem = 'L2', @TOKEN = '"+UTOKEN+"'"
+
+	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
+	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))
+	res.end()
+})
+
+router.put('/siparisDurumGuncelle', async function (req, res) {
+
+	IP = "" + req.connection.remoteAddress
+	BODY_ICERIK = ""
+	UTOKEN = "" + req.headers['utoken'].trim()
+
+	if (req.body != "")
+	{
+		try {
+			BODY_ICERIK = JSON.parse(req.body)
+		}
+		catch(err) {
+			res.send([{"S": "H", "HATA_KODU": "801", "HATA_ACIKLAMASI": "BODY-JSON Parse Hatası"}])
+			res.end()
+			return false
+		}
+	}
+
+		SORGU = "SP_W_T_SIPARISLER @islem = 'D', @TOKEN = '"+UTOKEN+"',"+
+									" @e_durum = '"+isnull(BODY_ICERIK.e_durum)+"',"+
+									" @eski_id = '"+isnull(BODY_ICERIK.ESKI_ID)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
 	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))
