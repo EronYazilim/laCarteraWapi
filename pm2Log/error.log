@@ -14042,3 +14042,8 @@ SyntaxError: Unexpected token u in JSON at position 0
     at JSON.parse (<anonymous>)
     at /home/eron/wapi/laCarteraWapi/component/admin/tanimlar/siparis_tanimlari.js:182:16
     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+SyntaxError: Unexpected token F in JSON at position 112
+    at JSON.parse (<anonymous>)
+    at /home/eron/wapi/laCarteraWapi/component/bayi/tanimlar/siparis_tanimlari.js:550:16
+    at runMicrotasks (<anonymous>)
+    at processTicksAndRejections (internal/process/task_queues.js:95:5)

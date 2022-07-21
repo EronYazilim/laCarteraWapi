@@ -62,6 +62,27 @@ JSON_satisIslemleri = {
         "type": "string",
         "description": "Satış IDsi",
         "default": ""
+      },
+			{
+        "name": "e_bayi_id",
+        "in": "query",
+        "type": "string",
+        "description": "e_bayi_id",
+        "default": ""
+      },
+			{
+        "name": "TARIH_BAS",
+        "in": "query",
+        "type": "string",
+        "description": "filtre tarih başlangıç",
+        "default": ""
+      },
+			{
+        "name": "TARIH_SON",
+        "in": "query",
+        "type": "string",
+        "description": "filtre tarih bitiş",
+        "default": ""
       }
 		],
       "responses": {
@@ -95,7 +116,10 @@ router.get('/satisListesi', async function (req, res) {
 									" @e_durum = '"+isnull(req.query.e_durum)+"',"+
 									" @SS = '"+isnull(req.query.SS)+"',"+
 									" @KS = '"+isnull(req.query.KS)+"',"+
-									" @eski_id = '"+isnull(req.query.ESKI_ID)+"'"
+									" @eski_id = '"+isnull(req.query.ESKI_ID)+"',"+
+									" @e_bayi_id = '"+isnull(req.query.e_bayi_id)+"',"+
+									" @TARIH_BAS = '"+isnull(req.query.TARIH_BAS)+"',"+
+									" @TARIH_SON = '"+isnull(req.query.TARIH_SON)+"'"
 
 	SONUC = await DBISLEM.SQL_CALISTIR(SORGU)
 	res.send(JSON.parse(SONUC.recordsets[0][0].DATA))

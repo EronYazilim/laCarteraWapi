@@ -902,6 +902,27 @@
                         "type": "string",
                         "description": "Satış IDsi",
                         "default": ""
+                    },
+                    {
+                        "name": "e_bayi_id",
+                        "in": "query",
+                        "type": "string",
+                        "description": "e_bayi_id",
+                        "default": ""
+                    },
+                    {
+                        "name": "TARIH_BAS",
+                        "in": "query",
+                        "type": "string",
+                        "description": "filtre tarih başlangıç",
+                        "default": ""
+                    },
+                    {
+                        "name": "TARIH_SON",
+                        "in": "query",
+                        "type": "string",
+                        "description": "filtre tarih bitiş",
+                        "default": ""
                     }
                 ],
                 "responses": {
