@@ -1,5 +1,5 @@
 module.exports = {
   YOL: function() {
-    return "C:/inetpub/wwwroot/noreflow.com/uploads/"
+    return "C:\\inetpub\\OneDrive\\eronhost\\eronsoftware.com\\laCartera\\uploads\\"
   },
 };

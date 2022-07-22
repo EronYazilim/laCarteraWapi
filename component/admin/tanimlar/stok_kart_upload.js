@@ -54,7 +54,8 @@ router.post('/', async function (req, res) {
   if (ISLEM) { ISLEM = ISLEM.trim() }
 
   ///---------------------------------------->>>>> ÇALIŞILACAK KLASÖRÜN PATH'i TANIMLANIYOR
-  if (req.header('Origin') == "http://localhost:5771" || req.header('Origin') == "https://test.eronsoftware.com:5770" || req.header('Origin') == "https://eronsoftware.com") {
+
+  if (req.header('Origin') == "http://localhost:5771") {
     klasor_yolu = dosyaPath_local + "stokKartIslemleri"
   } else {
     klasor_yolu = dosyaPath_url + "stokKartIslemleri"
