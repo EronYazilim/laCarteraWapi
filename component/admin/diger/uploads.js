@@ -27,13 +27,12 @@ router.use (function(req, res, next) {
 
 router.get('/:klasoradi/:dosyaadi', async function (req, res) {
 
-  if (req.header('Origin') == "http://localhost:5771") {
+  if (req.get('host') == "test.eronsoftware.com:5770") {
     klasor_yolu = dosyaPath_local + req.params.klasoradi
   } else {
     klasor_yolu = dosyaPath_url + req.params.klasoradi
   }
 
-  var klasor = req.params.klasoradi
   var dosya = req.params.dosyaadi
   var dosyakontrol = true 
 
